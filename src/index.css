@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+    --color-js-yellow: oklch(0.8959 0.1823 101.22);
+    --color-ts-blue: oklch(0.5671 0.1399 253.3);
+    --color-react-blue: oklch(0.832 0.1167 218.69);
+    --color-foreground: var(--color-slate-50);
+    --color-foreground-muted: var(--color-slate-400);
+}
+
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    font-synthesis: all;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    @apply bg-linear-to-b from-slate-600 to-slate-950 text-foreground;
+}
+
+#root {
+    @apply m-0 p-0 w-full h-full flex flex-col min-h-svh;
+}
+
+#site {
+    @apply flex flex-col gap-8 flex-grow min-w-sm max-w-5xl mx-auto px-4;
+}
+
+.social-icon {
+    @apply text-foreground-muted hover:text-foreground;
+}
