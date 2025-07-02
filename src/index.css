@@ -28,7 +28,7 @@ body {
 }
 
 #site {
-    @apply flex flex-col gap-8 flex-grow min-w-sm max-w-5xl mx-auto px-4;
+    @apply flex flex-col gap-8 flex-grow min-w-sm max-w-7xl mx-auto px-4;
 }
 
 .social-icon {
