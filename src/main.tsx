@@ -5,11 +5,11 @@ import Header from "./components/Header";
 import PullRequestsList from "./projects/PullRequestsList";
 import "./index.css";
 
-createRoot(document.getElementById("root")!).render(
+createRoot(document.getElementById("site")!).render(
   <StrictMode>
     <div id="site">
       <Header />
-      <main className="flex flex-col my-16">
+      <main className="flex flex-col flex-grow my-16">
         <PullRequestsList owner="walterfurrer" repo="portfolio" />
       </main>
       <Footer />

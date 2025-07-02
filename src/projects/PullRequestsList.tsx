@@ -52,7 +52,7 @@ const PullRequestsList: React.FC<PullRequestsListProps> = ({ owner, repo }) => {
   }
 
   return (
-    <div id="pull-request-container" className="flex flex-col gap-12 mx-auto">
+    <div id="pull-request-container" className="flex flex-col gap-8">
       <div>
         <h2 className="text-2xl font-bold">
           Pull Requests for{" "}
@@ -64,8 +64,8 @@ const PullRequestsList: React.FC<PullRequestsListProps> = ({ owner, repo }) => {
           </a>
         </h2>
       </div>
-      <div className="">
-        <ul className="flex flex-col gap-8 max-w-md mx-auto lg:grid lg:grid-cols-2 lg:max-w-3xl">
+      <div className="flex flex-col">
+        <ul className="flex flex-col gap-8 mx-auto lg:grid lg:grid-cols-2 lg:max-w-4xl">
           {pullRequests.length === 0 ? (
             <li> No pull requests found.</li>
           ) : (
