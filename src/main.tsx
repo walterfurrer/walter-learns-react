@@ -9,7 +9,7 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <div id="site">
       <Header />
-      <main className="flex flex-col gap-8">
+      <main className="flex flex-col gap-10">
         <PullRequestsList owner="walterfurrer" repo="portfolio" />
       </main>
       <Footer />
