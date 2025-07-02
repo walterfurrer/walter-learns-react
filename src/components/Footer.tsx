@@ -3,7 +3,7 @@ import SocialLinks from "./SocialLinks";
 
 const Header = () => {
   return (
-    <footer className="flex justify-center mt-auto h-16 lg:justify-end">
+    <footer className="flex justify-center h-12 lg:w-full lg:justify-end">
       <SocialLinks />
     </footer>
   );

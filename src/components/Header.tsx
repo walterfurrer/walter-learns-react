@@ -1,9 +1,9 @@
 import "../index.css";
-import SocialLinks from "./SocialLinks";
+// import SocialLinks from "./SocialLinks";
 
 const Header = () => {
   return (
-    <header className="flex flex-col gap-8 mt-12">
+    <header className="flex flex-col gap-8 mt-12 lg:mt-32">
       <div>
         <h1 className="text-5xl font-bold flex flex-col mx-auto gap-4 text-left max-w-md lg:max-w-full xl:flex-row xl:flex-wrap lg:w-full">
           <span className="p-2 flex w-fit">Walter Learns:</span>{" "}
@@ -12,9 +12,9 @@ const Header = () => {
           <span className="text-zinc-950 bg-react-blue p-2">React</span>
         </h1>
       </div>
-      <div className="flex justify-end">
+      {/* <div className="flex justify-end">
         <SocialLinks />
-      </div>
+      </div> */}
     </header>
   );
 };

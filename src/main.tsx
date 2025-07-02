@@ -9,7 +9,7 @@ createRoot(document.getElementById("site")!).render(
   <StrictMode>
     <div id="site">
       <Header />
-      <main className="flex flex-col flex-grow my-16">
+      <main className="flex flex-col flex-grow my-16 lg:justify-center">
         <PullRequestsList owner="walterfurrer" repo="portfolio" />
       </main>
       <Footer />
