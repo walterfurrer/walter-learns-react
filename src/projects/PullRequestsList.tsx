@@ -31,7 +31,7 @@ const PullRequestsList: React.FC<PullRequestsListProps> = ({ owner, repo }) => {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/pulls?state=all&per_page=5`);
+        const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/pulls?state=all&per_page=10`);
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         const data: PullRequest[] = await response.json();
         setPullRequests(data);
