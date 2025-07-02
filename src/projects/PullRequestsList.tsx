@@ -15,12 +15,12 @@ interface PullRequest {
   body: string | null;
 }
 
-interface PullRequestsListpullRequestops {
+interface PullRequestsListProps {
   owner: string;
   repo: string;
 }
 
-const PullRequestsList: React.FC<PullRequestsListpullRequestops> = ({ owner, repo }) => {
+const PullRequestsList: React.FC<PullRequestsListProps> = ({ owner, repo }) => {
   // 3. Use explicit types for state variables.
   const [pullRequests, setPullRequests] = useState<PullRequest[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -31,7 +31,7 @@ const PullRequestsList: React.FC<PullRequestsListpullRequestops> = ({ owner, rep
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/pulls?state=all&per_page=10`);
+        const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/pulls?state=all&per_page=5`);
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         const data: PullRequest[] = await response.json();
         setPullRequests(data);
@@ -52,47 +52,48 @@ const PullRequestsList: React.FC<PullRequestsListpullRequestops> = ({ owner, rep
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-6">
-        Pull Requests for{" "}
-        <a href={`https://github.com/${owner}/${repo}`} className="text-green-400">
-          {owner}/{repo}
-        </a>
-      </h2>
-      <ul className="space-y-4">
-        {pullRequests.length === 0 ? (
-          <li className="text-foreground-muted">No pull requests found.</li>
-        ) : (
-          pullRequests.map((pullRequest) => (
-            <li
-              key={pullRequest.id}
-              className="bg-foreground rounded-lg shadow p-4 border border-gray-100 hover:shadow-lg transition-shadow"
-            >
-              <a
-                href={pullRequest.html_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-lg font-semibold text-blue-700 hover:underline"
+    <div id="pull-request-container" className="flex flex-col gap-12 mx-auto">
+      <div>
+        <h2 className="text-2xl font-bold">
+          Pull Requests for{" "}
+          <a
+            href={`https://github.com/${owner}/${repo}`}
+            className="text-green-400 text-balance text-left hover:underline hover:underline-offset-8 hover:decoration-4"
+          >
+            {owner}/{repo}
+          </a>
+        </h2>
+      </div>
+      <div className="">
+        <ul className="flex flex-col gap-8 max-w-md mx-auto lg:grid lg:grid-cols-2 lg:max-w-3xl">
+          {pullRequests.length === 0 ? (
+            <li> No pull requests found.</li>
+          ) : (
+            pullRequests.map((pullRequest) => (
+              <li
+                key={pullRequest.id}
+                className="bg-slate-900/25 border border-slate-500 rounded-lg p-4 h-32 flex flex-col justify-between hover:brightness-150"
               >
-                #{pullRequest.number}: {pullRequest.title}
-              </a>
-              <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mt-2">
-                <span className={`font-bold ${pullRequest.state === "open" ? "text-green-600" : "text-red-600"}`}>
-                  {pullRequest.state.toUpperCase()}
-                </span>
-                <span>by {pullRequest.user.login}</span>
-                <span>Created: {new Date(pullRequest.created_at).toLocaleDateString()}</span>
-              </div>
-              {pullRequest.body && (
-                <p className="mt-2 text-gray-700 line-clamp-3">
-                  {pullRequest.body.slice(0, 200)}
-                  {pullRequest.body.length > 200 ? "..." : ""}
-                </p>
-              )}
-            </li>
-          ))
-        )}
-      </ul>
+                <a
+                  href={pullRequest.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-lg font-semibold text-foreground text-left text-balance hover:underline hover:underline-offset-5"
+                >
+                  #{pullRequest.number}: {pullRequest.title}{" "}
+                </a>
+                <div className="flex flex-row justify-around gap-4 text-sm text-slate-500/75 mt-2">
+                  <span className={`font-bold ${pullRequest.state === "open" ? "text-amber-500" : "text-inherit"}`}>
+                    {pullRequest.state.toUpperCase()}
+                  </span>
+                  <span>by {pullRequest.user.login}</span>
+                  <span>Created: {new Date(pullRequest.created_at).toLocaleDateString()}</span>
+                </div>
+              </li>
+            ))
+          )}
+        </ul>
+      </div>
     </div>
   );
 };
